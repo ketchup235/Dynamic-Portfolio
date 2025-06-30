@@ -1,0 +1,30 @@
+body{
+    background-color: rgb(205, 234, 255);
+    text-align: center;
+}
+
+.centered{
+    width: 90%;
+    height: 150px;
+    display: flex;
+    margin: 10px auto;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(76, 181, 223);
+    border-radius: 10px;
+    flex-direction: column;
+}
+
+.proj{
+    width: 90%;
+    height: 120px;
+    background-color: rgb(117, 222, 254);
+}
+
+svg{
+    color: black;
+}
+
+#icon{
+    margin: 60px;
+}
