@@ -3,7 +3,7 @@ const details= document.getElementsByClassName("details");
 const typed = new Typed('#typed', {
     strings: ["Kasyap Tumuluri"],
     startDelay: 500,
-    typeSpeed: 100,     
+    typeSpeed: 130,     
     backSpeed: 50,       
     showCursor: true,
     cursorChar: '|',
