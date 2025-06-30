@@ -36,3 +36,15 @@ svg{
     background-color: rgb(117, 222, 254);
     cursor: pointer;
 }
+
+.details {
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+  
+  .details.visible {
+    visibility: visible;
+    max-height: 200px; 
+  }

@@ -1,7 +1,10 @@
-const div = document.getElementsByClassName("proj");
+const proj = document.getElementsByClassName("proj");
+const details= document.getElementsByClassName("details");
 
-for(let i=0; i<div.length; i++) {
-    div[i].addEventListener("click", function() {
-        div[i].classList.toggle("larger");
+
+for(let i=0; i<proj.length; i++) {
+    proj[i].addEventListener("click", function() {
+        proj[i].classList.toggle("larger");
+        details[i].classList.toggle("visible");
     })
 }
