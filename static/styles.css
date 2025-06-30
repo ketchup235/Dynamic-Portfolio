@@ -28,3 +28,9 @@ svg{
 #icon{
     margin: 60px;
 }
+
+.larger{
+    width: 90%;
+    height: 200px;
+    background-color: rgb(117, 222, 254);
+}
