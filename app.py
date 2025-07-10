@@ -31,7 +31,7 @@ class Person(db.Model):
 def get_proj_from_csv():
     Project.query.delete()
     
-    with open("projects(Sheet1).csv", "r") as file:
+    with open("projects(Sheet1).csv", "r", encoding="utf-8-sig") as file:
         for row in csv.DictReader(file):
             project = Project(
                 title=row["title"],
@@ -45,7 +45,7 @@ def get_proj_from_csv():
 def get_person_from_csv():
     Person.query.delete()
     
-    with open("person(Sheet1).csv", "r") as file:
+    with open("person(Sheet1).csv", "r", encoding="utf-8-sig") as file:
         for row in csv.DictReader(file):
             person = Person(
                 name=row["name"],
