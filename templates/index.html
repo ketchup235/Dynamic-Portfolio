@@ -31,20 +31,15 @@
         area to see the details.
       </h3>
     </div>
+    {% for title, description, languages, link in projects %}
     <div class="centered proj">
-      <a
-        href="https://github.com/csa2425v1/lq-my-wordy-scramble-release-aka"
-        target="_blank"
-        ><h2>Project</h2></a
-      >
+      <a href="{{link}}" target="_blank"><h2>{{title}}</h2></a>
       <div class="details">
-        <h3 style="font-weight: normal">
-          This is a sample project description. It can be replaced with actual
-          project details.
-        </h3>
-        <h4 style="font-weight: normal">Languages: Java</h4>
+        <h3 style="font-weight: normal">{{description}}</h3>
+        <h4 style="font-weight: normal">Languages: {{languages}}</h4>
       </div>
     </div>
+    {%endfor%}
     <div class="centered proj">
       <a href="https://www.google.com" target="_blank"><h2>proj2</h2></a>
       <div class="details">
