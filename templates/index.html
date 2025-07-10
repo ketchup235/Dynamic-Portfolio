@@ -12,17 +12,15 @@
     ></script>
     <script src="{{url_for('static', filename='script.js')}}" defer></script>
 
-    <title>Kasyap Tumuluri</title>
+    <title>{{person.name}}</title>
   </head>
   <body>
     <div class="centered">
-      <h1 id="typed-container">
+      <h1 id="typed-container" data-name="{{person.name}}">
         <span id="typed"></span>
       </h1>
 
-      <h2>
-        Junior at Downingtown East High School, with a strong interest in CS
-      </h2>
+      <h2>{{person.bio}}</h2>
     </div>
     <div class="centered title">
       <h2>Projects</h2>
@@ -31,75 +29,16 @@
         area to see the details.
       </h3>
     </div>
-    {% for title, description, languages, link in projects %}
+
+    {% for proj in projects %}
     <div class="centered proj">
-      <a href="{{link}}" target="_blank"><h2>{{title}}</h2></a>
+      <a href="{{proj.link}}" target="_blank"><h2>{{proj.title}}</h2></a>
       <div class="details">
-        <h3 style="font-weight: normal">{{description}}</h3>
-        <h4 style="font-weight: normal">Languages: {{languages}}</h4>
+        <h3 style="font-weight: normal">{{proj.description}}</h3>
+        <h4 style="font-weight: normal">Languages: {{proj.language}}</h4>
       </div>
     </div>
     {%endfor%}
-    <div class="centered proj">
-      <a href="https://www.google.com" target="_blank"><h2>proj2</h2></a>
-      <div class="details">
-        <h3 style="font-weight: normal">
-          This is a sample project description. It can be replaced with actual
-          project details.
-        </h3>
-        <h4 style="font-weight: normal">
-          Languages: Python, JavaScript, HTML, CSS
-        </h4>
-      </div>
-    </div>
-    <div class="centered proj">
-      <a href="https://www.google.com" target="_blank"><h2>proj3</h2></a>
-      <div class="details">
-        <h3 style="font-weight: normal">
-          This is a sample project description. It can be replaced with actual
-          project details.
-        </h3>
-        <h4 style="font-weight: normal">
-          Languages: Python, JavaScript, HTML, CSS
-        </h4>
-      </div>
-    </div>
-    <div class="centered proj">
-      <a href="https://www.google.com" target="_blank"><h2>proj4</h2></a>
-      <div class="details">
-        <h3 style="font-weight: normal">
-          This is a sample project description. It can be replaced with actual
-          project details.
-        </h3>
-        <h4 style="font-weight: normal">
-          Languages: Python, JavaScript, HTML, CSS
-        </h4>
-      </div>
-    </div>
-    <div class="centered proj">
-      <a href="https://www.google.com" target="_blank"><h2>proj5</h2></a>
-      <div class="details">
-        <h3 style="font-weight: normal">
-          This is a sample project description. It can be replaced with actual
-          project details.
-        </h3>
-        <h4 style="font-weight: normal">
-          Languages: Python, JavaScript, HTML, CSS
-        </h4>
-      </div>
-    </div>
-    <div class="centered proj">
-      <a href="https://www.google.com" target="_blank"><h2>proj6</h2></a>
-      <div class="details">
-        <h3 style="font-weight: normal">
-          This is a sample project description. It can be replaced with actual
-          project details.
-        </h3>
-        <h4 style="font-weight: normal">
-          Languages: Python, JavaScript, HTML, CSS
-        </h4>
-      </div>
-    </div>
 
     <footer>
       <div id="icon">

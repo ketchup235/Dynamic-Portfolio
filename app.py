@@ -19,8 +19,16 @@ class Project(db.Model):
     
     def __repr__(self):
         return f"<Project {self.title}>"
+
+class Person(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    bio= db.Column(db.Text, nullable=False)
     
-def get_from_csv():
+    def __repr__(self):
+        return f"<Person {self.name}>"
+    
+def get_proj_from_csv():
     Project.query.delete()
     
     with open("projects(Sheet1).csv", "r") as file:
@@ -33,12 +41,26 @@ def get_from_csv():
             )
             db.session.add(project)
     db.session.commit()
+    
+def get_person_from_csv():
+    Person.query.delete()
+    
+    with open("person(Sheet1).csv", "r") as file:
+        for row in csv.DictReader(file):
+            person = Person(
+                name=row["name"],
+                bio=row["bio"]
+            )
+            db.session.add(person)
+    db.session.commit()
 
 with app.app_context():
     db.create_all()
-    get_from_csv()
+    get_proj_from_csv()
+    get_person_from_csv()
             
 @app.route("/")
 def index():
+    person= Person.query.first()
     projects=Project.query.all()
-    return render_template("index.html", projects=projects)
+    return render_template("index.html", projects=projects, person=person)
