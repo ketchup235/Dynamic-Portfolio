@@ -24,6 +24,8 @@ class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     bio= db.Column(db.Text, nullable=False)
+    github= db.Column(db.Text, nullable=False)
+    linkedin= db.Column(db.Text, nullable=False)
     
     def __repr__(self):
         return f"<Person {self.name}>"
@@ -45,7 +47,7 @@ def get_item_from_csv(filename, model_class, fields):
 with app.app_context():
     db.create_all()
     get_item_from_csv("projects(Sheet1).csv", Project, ["title", "description", "language", "link"])
-    get_item_from_csv("person(Sheet1).csv", Person, ["name", "bio"])
+    get_item_from_csv("person(Sheet1).csv", Person, ["name", "bio", "github", "linkedin"])
     get_item_from_csv("exp.csv", Experience, ["title", "description"])
     
             
