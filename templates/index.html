@@ -40,6 +40,20 @@
     </div>
     {%endfor%}
 
+    <div class="centered title">
+      <h2>Experience</h2>
+      <h3>Click on the experience title to view more details.</h3>
+    </div>
+
+    {% for exp in experience %}
+    <div class="centered proj">
+      <h2>{{exp.title}}</h2>
+      <div class="details">
+        <h3 style="font-weight: normal">{{exp.description}}</h3>
+      </div>
+    </div>
+    {%endfor%}
+
     <footer>
       <div id="icon">
         <a

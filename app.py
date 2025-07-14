@@ -27,40 +27,31 @@ class Person(db.Model):
     
     def __repr__(self):
         return f"<Person {self.name}>"
+
+class Experience(db.Model):
+    id= db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    description=db.Column(db.Text, nullable=False)
     
-def get_proj_from_csv():
-    Project.query.delete()
-    
-    with open("projects(Sheet1).csv", "r", encoding="utf-8-sig") as file:
+def get_item_from_csv(filename, model_class, fields):
+    model_class.query.delete()
+    with open(filename, "r", encoding="utf-8-sig") as file:
         for row in csv.DictReader(file):
-            project = Project(
-                title=row["title"],
-                description=row["description"],
-                language=row["language"],
-                link=row["link"]
-            )
-            db.session.add(project)
-    db.session.commit()
-    
-def get_person_from_csv():
-    Person.query.delete()
-    
-    with open("person(Sheet1).csv", "r", encoding="utf-8-sig") as file:
-        for row in csv.DictReader(file):
-            person = Person(
-                name=row["name"],
-                bio=row["bio"]
-            )
-            db.session.add(person)
+            item_data = {field: row[field] for field in fields}
+            item = model_class(**item_data)
+            db.session.add(item)
     db.session.commit()
 
 with app.app_context():
     db.create_all()
-    get_proj_from_csv()
-    get_person_from_csv()
+    get_item_from_csv("projects(Sheet1).csv", Project, ["title", "description", "language", "link"])
+    get_item_from_csv("person(Sheet1).csv", Person, ["name", "bio"])
+    get_item_from_csv("exp.csv", Experience, ["title", "description"])
+    
             
 @app.route("/")
 def index():
     person= Person.query.first()
     projects=Project.query.all()
-    return render_template("index.html", projects=projects, person=person)
+    experience= Experience.query.all()
+    return render_template("index.html", projects=projects, person=person, experience=experience)
