@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(205, 234, 255);
+    background-color: rgb(177, 219, 252);
     font-family: monospace;
 }
 
@@ -57,8 +57,7 @@ max-height: 200px;
 }
 
 .title{
-    margin-top: 20px;
-    background-color: rgb(106, 200, 237);
+    font-size: 17px;
 }
 
 a{

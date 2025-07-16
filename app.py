@@ -33,6 +33,7 @@ class Person(db.Model):
 class Experience(db.Model):
     id= db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
+    date = db.Column(db.String(50), nullable=False)
     description=db.Column(db.Text, nullable=False)
     
 def get_item_from_csv(filename, model_class, fields):
@@ -48,7 +49,7 @@ with app.app_context():
     db.create_all()
     get_item_from_csv("projects(Sheet1).csv", Project, ["title", "description", "language", "link"])
     get_item_from_csv("person(Sheet1).csv", Person, ["name", "bio", "github", "linkedin"])
-    get_item_from_csv("exp.csv", Experience, ["title", "description"])
+    get_item_from_csv("exp.csv", Experience, ["title", "date","description"])
     
             
 @app.route("/")
