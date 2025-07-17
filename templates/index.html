@@ -15,6 +15,7 @@
     <title>{{person.name}}</title>
   </head>
   <body>
+    <br>
     <div class="centered">
       <h1 id="typed-container" data-name="{{person.name}}">
         <span id="typed"></span>
@@ -67,33 +68,50 @@
       </a>
     </div>
     </div>
-    <div class="centered title">
-      <h1>Projects</h1>
-    </div>
-    <div class="projects">
-      {% for proj in projects %}
-      <div class="card">
-        <h3>{{proj.title}}</h3>
-        <div class="tag">{{proj.language}}</div>
-        <p class="description">{{proj.description}}</p>
-        <a class="button" href="{{proj.link}}" target="_blank">
-          View Project <span class="arrow">↗</span>
-        </a>
+    <div class="block">
+      <div class="centered title">
+        <h1>Education</h1>
       </div>
-      {%endfor%}
+      <div class="flex">
+        {% for ed in education %}
+        <div class="card">
+          <h3>{{ed.title}}</h3>
+          <p class="description">{{ed.description}}</p>
+          {%if ed.link%}
+            <a class="button" href="{{ed.link}}" target="_blank">
+              View Learnings <span class="arrow">↗</span>
+            </a>
+          {%endif%}
+        </div>
+        {%endfor%}
+      <div class="centered title">
+        <h1>Projects</h1>
+      </div>
+      <div class="flex">
+        {% for proj in projects %}
+        <div class="card">
+          <h3>{{proj.title}}</h3>
+          <div class="tag">{{proj.language}}</div>
+          <p class="description">{{proj.description}}</p>
+          <a class="button" href="{{proj.link}}" target="_blank">
+            View Project <span class="arrow">↗</span>
+          </a>
+        </div>
+        {%endfor%}
+      </div>
+      <div class="centered title">
+        <h1>Experience</h1>
+      </div>
+      <div class="flex">
+        {% for exp in experience %}
+        <div class="card">
+          <h3>{{exp.title}}</h3>
+          <div class="tag">{{exp.date}}</div>
+          <p class="description">{{exp.description}}</p>
+        </div>
+        {%endfor%}
+      </div>
     </div>
-    <div class="centered title">
-      <h1>Experience</h1>
-    </div>
-
-    {% for exp in experience %}
-    <div class="card">
-      <h3>{{exp.title}}</h3>
-      <div class="tag">{{exp.date}}</div>
-      <p class="description">{{exp.description}}</p>
-    </div>
-    {%endfor%}
-
     <footer></footer>
   </body>
 </html>
