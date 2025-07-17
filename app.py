@@ -23,6 +23,7 @@ class Person(db.Model):
     bio= db.Column(db.Text, nullable=False)
     github= db.Column(db.Text, nullable=False)
     linkedin= db.Column(db.Text, nullable=False)
+    leetcode= db.Column(db.Text, nullable=False)
 
 class Experience(db.Model):
     id= db.Column(db.Integer, primary_key=True)
@@ -34,7 +35,11 @@ class Education(db.Model):
     id= db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description=db.Column(db.Text, nullable=False)
-    link=db.Column(db.String(200), nullable=False)
+    link=db.Column(db.String(200), nullable=True)
+
+class Skills(db.Model):
+    id= db.Column(db.Integer, primary_key=True)
+    skills = db.Column(db.Text, nullable=False)
     
 def get_item_from_csv(filename, model_class, fields):
     model_class.query.delete()
@@ -48,15 +53,16 @@ def get_item_from_csv(filename, model_class, fields):
 with app.app_context():
     db.create_all()
     get_item_from_csv("projects(Sheet1).csv", Project, ["title", "description", "language", "link"])
-    get_item_from_csv("person(Sheet1).csv", Person, ["name", "bio", "github", "linkedin"])
+    get_item_from_csv("person(Sheet1).csv", Person, ["name", "bio", "github", "linkedin","leetcode"])
     get_item_from_csv("exp.csv", Experience, ["title", "date","description"])
     get_item_from_csv("edu.csv", Education, ["title","description", "link"])
+    get_item_from_csv("skills.csv", Skills, ["skills"])
     
-            
 @app.route("/")
 def index():
     person= Person.query.first()
     projects=Project.query.all()
     experience= Experience.query.all()
     education= Education.query.all()
-    return render_template("index.html", projects=projects, person=person, experience=experience, education=education)
+    skills= Skills.query.all()
+    return render_template("index.html", projects=projects, person=person, experience=experience, education=education, skills=skills)
